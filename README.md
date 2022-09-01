@@ -1,1 +1,22 @@
 # ku-polls
+## Online Polls And Surveys
+
+An application for conducting online polls and surveys based
+on the [Django Tutorial project][django-tutorial], with
+additional features.
+
+App created as part of the [Individual Software Process](
+https://cpske.github.io/ISP) course at Kasetsart University.
+
+## Install and Run
+
+to be added.
+
+## Project Documents
+
+* [Home](https://github.com/Tezigudo/ku-polls/wiki/Home)
+* [Vision statement](https://github.com/nabhan-au/ku-polls/wiki/Vision-Statement)
+* [Requirement](https://github.com/Tezigudo/ku-polls/wiki/Requirements)
+* [Iteration 1 plan](https://github.com/Tezigudo/ku-polls/wiki/Iteration-1-Plan)
+
+[django-tutorial]: https://docs.djangoproject.com/en/4.1/intro/tutorial01/
