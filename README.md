@@ -14,6 +14,7 @@ to be added.
 
 ## [Project Documents](https://github.com/Tezigudo/ku-polls/wiki/Home)
 
+* [Task board](https://github.com/Tezigudo/ku-polls/projects)
 * [Vision statement](https://github.com/nabhan-au/ku-polls/wiki/Vision-Statement)
 * [Requirements](https://github.com/Tezigudo/ku-polls/wiki/Requirements)
 * [Iteration 1 plan](https://github.com/Tezigudo/ku-polls/wiki/Iteration-1-Plan)
