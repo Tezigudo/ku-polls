@@ -16,7 +16,6 @@ class Question(models.Model):
         ordering='pub_date',
         description='Published recently?',
     )
-
     def was_published_recently(self):
         return timezone.localtime() >= self.pub_date >= timezone.localtime() - datetime.timedelta(days=1)
 
@@ -24,7 +23,9 @@ class Question(models.Model):
         return timezone.localtime() >= self.pub_date
 
     def can_vote(self):
-        return self.is_published and timezone.localtime() <= self.end_date
+        if self.end_date:
+            return self.is_published and timezone.localtime() <= self.end_date
+        return self.is_published()
 
     def __str__(self) -> str:
         return self.question_text
