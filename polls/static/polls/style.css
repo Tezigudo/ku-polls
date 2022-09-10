@@ -5,3 +5,11 @@ li a {
 body {
     background: black url("images/background.jpeg") no-repeat;
 }
+
+.polls_list{
+    border: 5px outset green;
+    background-color: black;
+}
+div{
+    display: block;
+}
