@@ -2,7 +2,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import timezone
 from django.urls import reverse
 from django.views import generic
-from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from .models import Question, Choice
