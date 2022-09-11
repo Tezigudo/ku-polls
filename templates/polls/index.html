@@ -1,13 +1,31 @@
+{% extends 'polls/base.html' %}
+
+{%block title%}
+{{ super }}
+Polls list
+{% endblock title%}
+{% block body%}
+{{super}}
+  <h1>Polls list</h1>
 {% if latest_question_list %}
   <ul>
     {% for question in latest_question_list %}
-    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    <list>{{forloop.counter0|add:"1"}}
+    {% if question.can_vote %}
+ <a href="{% url 'polls:results' question.id %}">
+      <button type="button">{{"results"}}</button>
+  </a>  <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+  </a>
+
+    {%else%}
+    <a href="{% url 'polls:results' question.id %}">
+      <button type="button">{{"results"}}</button>
+  </a>     {{ question.question_text }}
+    {%endif%}
+</list><br>
     {% endfor %}
   </ul>
 {% else %}
   <p>No polls are available.</p>
 {% endif %}
-
-{% load static %}
-
-<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+{% endblock body%}

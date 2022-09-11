@@ -2,6 +2,60 @@ li a {
     color: rgb(103, 223, 103);
 }
 
+li {
+    color: rgb(48, 158, 165);
+}
+
 body {
     background: black url("images/background.jpeg") no-repeat;
+}
+
+a:link {
+    color: rgb(103, 223, 103);
+}
+
+v:link {
+    color: rgb(72, 118, 72);
+}
+
+list{
+    color: rgb(48, 158, 165);
+}
+
+list a{
+    color: rgb(103, 223, 103);
+}
+
+.polls_list {
+    border: 5px outset green;
+    background-color: black;
+}
+
+div {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    border: 5px outset green;
+    background-color: black;
+    align-self: auto;
+    text-align: left;
+
+}
+
+h1 {
+    color: rgb(103, 223, 103);
+    text-align: center;
+}
+
+h2 {
+    color: rgb(103, 223, 103);
+    text-align: center;
+}
+
+label {
+    color: rgb(76, 201, 147);
+}
+
+strong {
+    color: rgb(215, 76, 29);
 }
