@@ -1,6 +1,6 @@
 """View for polls application."""
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.utils import timezone
 from django.urls import reverse
 from django.views import generic
@@ -40,10 +40,21 @@ class DetailView(generic.DetailView):
         return Question.objects.filter(pub_date__lte=timezone.localtime())
 
     def get(self, request, *args, **kwargs):
-        """Override the get method to check if the question can be voted."""
-        question = get_object_or_404(Question, pk=kwargs['pk'])
+        """Override the get method to check if the question can be voted.
+
+        Arguments:
+            request {HTTP_Request} -- httprequest
+
+        Returns:
+            httpresponse -- response of the request
+        """
+        error = None
+        try:
+            question = get_object_or_404(Question, pk=kwargs['pk'])
+        except Http404:
+            error = '404'
         # if question is expired show a error and redirect to index
-        if not question.can_vote():
+        if error == '404' or not question.can_vote():
             messages.error(
                 request, "This question is not available for voting.")
             return HttpResponseRedirect(reverse('polls:index'))
