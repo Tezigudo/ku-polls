@@ -2,7 +2,7 @@ li a {
     color: rgb(103, 223, 103);
 }
 
-li{
+li {
     color: rgb(48, 158, 165);
 }
 
@@ -13,15 +13,17 @@ body {
 a:link {
     color: rgb(103, 223, 103);
 }
-v:link{
+
+v:link {
     color: rgb(72, 118, 72);
 }
 
-.polls_list{
+.polls_list {
     border: 5px outset green;
     background-color: black;
 }
-div{
+
+div {
     display: block;
     margin: 0 auto;
     width: 50%;
@@ -32,15 +34,15 @@ div{
 
 }
 
-h1{
+h1 {
     color: rgb(103, 223, 103);
     text-align: center;
 }
 
-label{
+label {
     color: rgb(76, 201, 147);
 }
 
-strong{
+strong {
     color: rgb(215, 76, 29);
 }
