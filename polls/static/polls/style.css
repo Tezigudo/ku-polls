@@ -36,3 +36,11 @@ h1{
     color: rgb(103, 223, 103);
     text-align: center;
 }
+
+label{
+    color: rgb(76, 201, 147);
+}
+
+strong{
+    color: rgb(215, 76, 29);
+}
