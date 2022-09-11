@@ -6,13 +6,11 @@ Voting results
 {% endblock title %}
 
 {% block body%}
-<h2>{{ question.question_text }}</h2>
+<h2>{{ question.question_text }} Results</h2>
 
-<ul>
 {% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    <list>&nbsp;&nbsp;{{forloop.counter0|add:"1"}}&nbsp;&nbsp;{{ choice.choice_text }} -- {{ choice.votes }}</list><br>
 {% endfor %}
-</ul>
 
 <a href="{% url 'polls:index' %}"><button type='button'>Home</button></a>
 {% endblock body%}

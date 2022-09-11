@@ -18,6 +18,14 @@ v:link {
     color: rgb(72, 118, 72);
 }
 
+list{
+    color: rgb(48, 158, 165);
+}
+
+list a{
+    color: rgb(103, 223, 103);
+}
+
 .polls_list {
     border: 5px outset green;
     background-color: black;
