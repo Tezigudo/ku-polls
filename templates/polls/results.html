@@ -1,13 +1,12 @@
-{% load static %}
-<html>
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="{% static 'polls/style.css' %}">
-  <title>Polls lists</title>
-</head>
-<body>
+{% extends 'polls/base.html' %}
 
-<h1>{{ question.question_text }}</h1>
+{% block title%}
+{{super}}
+Voting results
+{% endblock title %}
+
+{% block body%}
+<h2>{{ question.question_text }}</h2>
 
 <ul>
 {% for choice in question.choice_set.all %}
@@ -16,5 +15,4 @@
 </ul>
 
 <a href="{% url 'polls:index' %}"><button type='button'>Home</button></a>
-</body>
-</html>
+{% endblock body%}

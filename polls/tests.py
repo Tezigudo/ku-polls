@@ -182,7 +182,9 @@ class QuestionDetailViewTests(TestCase):
             question_text='Future question.', days=5)
         url = reverse('polls:detail', args=(future_question.id,))
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 404)
+        # if polls arent open it will reqirect(maybe) or
+        # 404 ERROR i dont sure this one
+        self.assertEqual(response.status_code, 302)
 
     def test_past_question(self):
         """

@@ -1,14 +1,13 @@
-{% load static %}
-<html>
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="{% static 'polls/style.css' %}">
-  <title>Polls lists</title>
-</head>
-<body>
+{% extends 'polls/base.html' %}
+
+{%block title%}
+{{ super }}
+Polls list
+{% endblock title%}
+{% block body%}
+{{super}}
   <h1>Polls list</h1>
 {% if latest_question_list %}
-<div class="polls_list">
   <ul>
     {% for question in latest_question_list %}
     {% if question.can_vote %}
@@ -26,10 +25,7 @@
 <br>
     {% endfor %}
   </ul>
-</div>
 {% else %}
   <p>No polls are available.</p>
 {% endif %}
-
-</body>
-</html>
+{% endblock body%}
