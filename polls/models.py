@@ -27,8 +27,7 @@ class Question(models.Model):
         return timezone.localtime() >= self.pub_date >= timezone.localtime() - datetime.timedelta(days=1)
 
     def is_published(self) -> bool:
-        """Check whether question was published or not.
-        by published date and today(time now)
+        """Check whether question was published or not by published date and today(time now).
 
         Returns:
             bool -- True if now time more than publishing date, False otherwise
@@ -36,8 +35,7 @@ class Question(models.Model):
         return timezone.localtime() >= self.pub_date
 
     def can_vote(self) -> bool:
-        """Check whether question can be voted or not.
-        if now time is more than end dated visitor can not vote anymore
+        """Check whether question can be voted or not if now time is more than end dated visitor can not vote anymore.
 
         Returns:
             bool -- True if question are not expired, False otherwise
