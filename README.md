@@ -9,8 +9,39 @@ App created as part of the [Individual Software Process](
 https://cpske.github.io/ISP) course at Kasetsart University.
 
 ## Install and Run
+make sure that you have [python](https://www.python.org/downloads/) in your computer
 
-to be added.
+first clone [**this repository**](https://github.com/Tezigudo/ku-polls) by type this command in your terminal at your choose path
+
+```sh
+git clone https://github.com/Tezigudo/ku-polls.git ku-polls
+```
+
+go to project directory
+
+```sh
+cd ku-polls
+```
+
+make sure that you install all the requirements by run this command, its can be whether `pip`, `pip3`, or `python -m pip`
+
+```sh
+pip install -r requirements.txt
+```
+
+next, you have to create file name `.env` to configuration **note that you may get your secretkeys [here](https://djecrety.ir)**
+
+`.env` file template looks like [sample.env](sample.env) you can modify value and copy it into `.env`
+
+now to run server by type this
+```sh
+python manage.py runserver
+```
+
+lets enjoy the polls by me :)
+
+---
+
 
 ## [Project Documents](https://github.com/Tezigudo/ku-polls/wiki/Home)
 
