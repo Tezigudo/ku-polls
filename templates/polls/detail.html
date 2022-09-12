@@ -1,7 +1,7 @@
 {% extends 'polls/base.html' %}
-{% block title%}
+{% block title %}
 {{question.question_text}}
-{% endblock title%}
+{% endblock %}
 
 {% block body%}
 <form action="{% url 'polls:vote' question.id %}" method="post">
