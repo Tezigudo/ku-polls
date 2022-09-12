@@ -18,7 +18,7 @@ from django.urls import include, path
 from django.http import HttpResponseRedirect
 
 urlpatterns = [
-    path('', lambda request: HttpResponseRedirect('polls/'), name='Redirecting'),
+    path('', lambda request: HttpResponseRedirect('/polls/'), name='Redirecting'),
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
 ]
