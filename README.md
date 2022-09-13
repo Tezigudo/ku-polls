@@ -38,6 +38,9 @@ now to run server by type this
 python manage.py runserver
 ```
 
+last step:
+go to `http://127.0.0.1:8000/` or `localhost:8000/` for application.
+
 lets enjoy the polls by me :)
 
 ---
