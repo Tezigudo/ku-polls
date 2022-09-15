@@ -1,5 +1,9 @@
-from .base import create_question
+import datetime
 from django.test import TestCase
+from django.utils import timezone
+
+from .base import create_question
+
 
 class QuestionModelTests(TestCase):
 
