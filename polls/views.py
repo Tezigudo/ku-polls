@@ -1,19 +1,22 @@
 """View for polls application."""
 
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.utils import timezone
-from django.urls import reverse
-from django.views import generic
-from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
-from .models import Question, Choice
+from django.contrib.auth.decorators import login_required
+from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
+from django.utils import timezone
+from django.views import generic
+
+from .models import Choice, Question
 
 
 class IndexView(generic.ListView):
     """View for index.html."""
 
     template_name = 'polls/index.html'
-    context_object_name = 'latest_question_list'
+    context_object _name = 'latest_question_list'
 
     def get_queryset(self):
         """Return the last five published questions."""
@@ -69,9 +72,17 @@ class ResultsView(generic.DetailView):
     template_name = 'polls/results.html'
 
 
+class EyesOnlyView(LoginRequiredMixin, generic.ListView):
+    # this is the default. Same default as in auth_required decorator
+    login_url = '/accounts/login/'
+    rest of your view code
+
+
+@login_required
 def vote(request, question_id):
     """Voting for voting button."""
     # get the question or throw error
+    user = request.user
     question = get_object_or_404(Question, pk=question_id)
     try:
         # if user didnt select a choice or invalid choice

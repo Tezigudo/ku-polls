@@ -7,7 +7,6 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
-
 class Question(models.Model):
     """Model for polls question."""
 
@@ -61,7 +60,11 @@ class Choice(models.Model):
 
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+
+    @property
+    def votes(self):
+        return Vote.objects.filter(choice=self).count()
+
 
     def __str__(self) -> str:
         """Visualize python object using string method.
@@ -70,3 +73,12 @@ class Choice(models.Model):
             str -- polls's choice text
         """
         return self.choice_text
+
+
+class Vote(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
+
+    @property
+    def question(self):
+        return self.choice.question
