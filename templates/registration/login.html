@@ -1,9 +1,16 @@
-<form method="POST">
-  {% csrf_token %}
-  <table style="padding: 2ex;">
-  {{ form.as_table }}
-  </table>
-  <button type="submit">Login</button>
-  <!-- if your app redirects user to login before accessing some pages, then next contains return url -->
-  <input type="hidden" name="next" value="{{next}}" />
-</form>
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %} 
+    <h2>Welcome back, {{ user.username }} <br></h2>
+    <p><a href="{% url 'logout' %}"><button type="button">Log Out</button></a></p>
+{% else %}
+  <h1> Login form</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <table style="padding: 2ex;">{{ form.as_table }}</table>
+    <button type="submit">Login</button>
+    <!-- if your app redirects user to login before accessing some pages, then next contains return url -->
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+{% endif %}
+{% endblock content %}

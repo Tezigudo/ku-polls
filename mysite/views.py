@@ -1,6 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+class EyesOnlyView(LoginRequiredMixin, ListView):
+    # this is the default. Same default as in auth_required decorator
+    login_url = '/accounts/login/'
 
 
 def signup(request):
@@ -18,4 +25,4 @@ def signup(request):
         # we should display a message in signup.html
     else:
         form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'form':form})
+    return render(request, 'registration/signup.html', {'form': form})

@@ -6,6 +6,7 @@ Voting results
 {% endblock title %}
 
 {% block body%}
+{{super}}
 <h2>{{ question.question_text }} Results</h2>
 
 {% for choice in question.choice_set.all %}

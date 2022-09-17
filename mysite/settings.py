@@ -131,4 +131,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/polls/'    # show list of polls
-LOGOUT_REDIRECT_URL = '/accounts/'
+LOGOUT_REDIRECT_URL = '/'

@@ -16,7 +16,7 @@ class IndexView(generic.ListView):
     """View for index.html."""
 
     template_name = 'polls/index.html'
-    context_object _name = 'latest_question_list'
+    context_object_name = 'latest_question_list'
 
     def get_queryset(self):
         """Return the last five published questions."""
@@ -72,13 +72,7 @@ class ResultsView(generic.DetailView):
     template_name = 'polls/results.html'
 
 
-class EyesOnlyView(LoginRequiredMixin, generic.ListView):
-    # this is the default. Same default as in auth_required decorator
-    login_url = '/accounts/login/'
-    rest of your view code
-
-
-@login_required
+@login_required(login_url='/accounts/login')
 def vote(request, question_id):
     """Voting for voting button."""
     # get the question or throw error
