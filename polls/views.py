@@ -2,7 +2,7 @@
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpRequest
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils import timezone
@@ -72,7 +72,7 @@ class ResultsView(generic.DetailView):
 
 
 @login_required(login_url='/accounts/login')
-def vote(request, question_id):
+def vote(request: HttpRequest, question_id):
     """Voting for voting button."""
     # get the question or throw error
     user = request.user
@@ -92,11 +92,12 @@ def vote(request, question_id):
         # to vote it and save the result
         if question.can_vote():
             try:
-                user_vote = Vote.objects.get(user=user)
+                # user_vote = Vote.objects.get(user=user, question=question)
+                user_vote = question.vote_set.get(user=user)
                 user_vote.choice = selected_choice
                 user_vote.save()
             except Vote.DoesNotExist:
-                Vote.objects.create(user=user, choice=selected_choice).save()
+                Vote.objects.create(user=user, choice=selected_choice, question=selected_choice.question).save()
         else:
             # if question is expired it will redirect you to the index page.
             messages.error(request, "You can't vote this question.")

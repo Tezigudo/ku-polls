@@ -75,9 +75,9 @@ class Choice(models.Model):
 
 
 class Vote(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
 
-    @property
-    def question(self):
-        return self.choice.question
+    def __repr__(self) -> str:
+        return f'Vote(user={self.user.id}, questionid={self.question.id}, choiceid={self.choice.id})'
