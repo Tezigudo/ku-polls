@@ -51,6 +51,7 @@ class DetailView(generic.DetailView):
             httpresponse -- response of the request
         """
         error = None
+        user = request.user
         try:
             question = get_object_or_404(Question, pk=kwargs['pk'])
         except Http404:
@@ -60,10 +61,19 @@ class DetailView(generic.DetailView):
             messages.error(
                 request, "This question is not available for voting.")
             return HttpResponseRedirect(reverse('polls:index'))
-        # kwargs['is_voted'] = kwargs['choice'].is_voted(request.user)
-        # go to polls detail application
-        print(kwargs)
-        return super().get(request, *args, **kwargs)
+        try:
+            # if user didnt select a choice or invalid choice
+            # it will render as didnt select a choice
+            user_vote = question.vote_set.get(user=user).choice
+        except Vote.DoesNotExist:
+            return super().get(request, *args, **kwargs)
+        else:
+            # go to polls detail application
+
+            return render(request, 'polls/detail.html', {
+                'question': question,
+                'is_voted': user_vote.is_voted(user),
+            })
 
 
 class ResultsView(generic.DetailView):
@@ -94,12 +104,12 @@ def vote(request: HttpRequest, question_id):
         # to vote it and save the result
         if question.can_vote():
             try:
-                # user_vote = Vote.objects.get(user=user, question=question)
                 user_vote = question.vote_set.get(user=user)
                 user_vote.choice = selected_choice
                 user_vote.save()
             except Vote.DoesNotExist:
-                Vote.objects.create(user=user, choice=selected_choice, question=selected_choice.question).save()
+                Vote.objects.create(
+                    user=user, choice=selected_choice, question=selected_choice.question).save()
         else:
             # if question is expired it will redirect you to the index page.
             messages.error(request, "You can't vote this question.")
