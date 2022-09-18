@@ -4,12 +4,11 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
 
-from .models import Choice, Question
+from .models import Choice, Question, Vote
 
 
 class IndexView(generic.ListView):
@@ -91,8 +90,12 @@ def vote(request, question_id):
         # if question can vote it will give you
         # to vote it and save the result
         if question.can_vote():
-            selected_choice.votes += 1
-            selected_choice.save()
+            if Vote.objects.filter(user=user, choice=selected_choice).exists():
+                now = Vote.objects.get(user=user, choice=selected_choice)
+                now.choice = selected_choice
+                now.save()
+            else:
+                question.vote_set.create(user=user, choice=selected_choice)
             # after voting it will redirct you to result page
             return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
         else:
