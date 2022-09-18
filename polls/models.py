@@ -65,6 +65,17 @@ class Choice(models.Model):
     def votes(self):
         return Vote.objects.filter(choice=self).count()
 
+    def is_voted(self, user) -> bool:
+        """Check whether user has voted or not.
+
+        Arguments:
+            user {User} -- user object
+
+        Returns:
+            bool -- True if user has voted, False otherwise
+        """
+        return Vote.objects.filter(choice=self, user=user).exists()
+
     def __str__(self) -> str:
         """Visualize python object using string method.
 

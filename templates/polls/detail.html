@@ -5,11 +5,16 @@
 
 {% block body%}
 {{super}}
+
 <form action="{% url 'polls:vote' question.id %}" method="post">
     {% csrf_token %}
         <legend><h2>{{ question.question_text }}</h2></legend>
-        {% for choice in question.choice_set.all %}
-            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        {% for choice in question.choice_set.all %} 
+        {% if choice.is_voted %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" checked>
+        {% else %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        {% endif %}
             <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
         {% endfor %}
     <input type="submit" value="Vote">

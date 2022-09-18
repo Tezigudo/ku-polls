@@ -60,7 +60,9 @@ class DetailView(generic.DetailView):
             messages.error(
                 request, "This question is not available for voting.")
             return HttpResponseRedirect(reverse('polls:index'))
+        # kwargs['is_voted'] = kwargs['choice'].is_voted(request.user)
         # go to polls detail application
+        print(kwargs)
         return super().get(request, *args, **kwargs)
 
 
