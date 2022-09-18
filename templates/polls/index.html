@@ -29,7 +29,8 @@ Polls list
   <p>No polls are available.</p>
 {% endif %}
 
-{% if user.is_authenticated %}<label>{{"login as "}}</label><user>{{user.username}}</user> <a href="{% url 'logout' %}"><button type="button">Log Out</button></a>
+{% if user.is_authenticated %}&nbsp;&nbsp;&nbsp;<label>{{"login as "}}</label><user>{{user.username}}</user> <a href="{% url 'logout' %}"><button type="button">Log Out</button></a>
 {% else %}<a href="{% url 'login' %}"><button type="button">Log in?</button></a>
 {% endif %}
 {% endblock body%}
+{% block button %}{% endblock button %}

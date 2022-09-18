@@ -13,5 +13,4 @@ Voting results
     <list>&nbsp;&nbsp;{{forloop.counter0|add:"1"}}&nbsp;&nbsp;{{ choice.choice_text }} -- {{ choice.votes }}</list><br>
 {% endfor %}
 
-<a href="{% url 'polls:index' %}"><button type='button'>Home</button></a>
 {% endblock body%}

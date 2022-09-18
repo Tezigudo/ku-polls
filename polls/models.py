@@ -65,7 +65,6 @@ class Choice(models.Model):
     def votes(self):
         return Vote.objects.filter(choice=self).count()
 
-
     def __str__(self) -> str:
         """Visualize python object using string method.
 
@@ -76,10 +75,9 @@ class Choice(models.Model):
 
 
 class Vote(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
 
-    # @property
-    # def question(self):
-    #     return self.choice.question
+    @property
+    def question(self):
+        return self.choice.question

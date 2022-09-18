@@ -81,6 +81,7 @@ def vote(request, question_id):
         # if user didnt select a choice or invalid choice
         # it will render as didnt select a choice
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
+
     except (KeyError, Choice.DoesNotExist):
         return render(request, 'polls/detail.html', {
             'question': question,
@@ -90,15 +91,16 @@ def vote(request, question_id):
         # if question can vote it will give you
         # to vote it and save the result
         if question.can_vote():
-            if Vote.objects.filter(user=user, choice=selected_choice).exists():
-                now = Vote.objects.get(user=user, choice=selected_choice)
-                now.choice = selected_choice
-                now.save()
-            else:
-                question.vote_set.create(user=user, choice=selected_choice)
-            # after voting it will redirct you to result page
-            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+            try:
+                user_vote = Vote.objects.get(user=user)
+                user_vote.choice = selected_choice
+                user_vote.save()
+            except Vote.DoesNotExist:
+                Vote.objects.create(user=user, choice=selected_choice).save()
         else:
             # if question is expired it will redirect you to the index page.
             messages.error(request, "You can't vote this question.")
             return HttpResponseRedirect(reverse('polls:index'))
+
+        # after voting it will redirct you to result page
+        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
