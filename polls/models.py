@@ -63,6 +63,7 @@ class Choice(models.Model):
 
     @property
     def votes(self):
+        """total vote for this choice"""
         return Vote.objects.filter(choice=self).count()
 
     def __str__(self) -> str:
@@ -75,6 +76,7 @@ class Choice(models.Model):
 
 
 class Vote(models.Model):
+    """model for vating one user to one question."""
     question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)

@@ -41,6 +41,7 @@ class DetailView(generic.DetailView):
         """Excludes any questions that aren't published yet."""
         return Question.objects.filter(pub_date__lte=timezone.localtime())
 
+
     def get(self, request, *args, **kwargs):
         """Override the get method to check if the question can be voted.
 
@@ -62,10 +63,12 @@ class DetailView(generic.DetailView):
                 request, "This question is not available for voting.")
             return HttpResponseRedirect(reverse('polls:index'))
         try:
-            # if user didnt select a choice or invalid choice
-            # it will render as didnt select a choice
+            if not user.is_authenticated:
+                raise Vote.DoesNotExist
             user_vote = question.vote_set.get(user=user).choice
         except Vote.DoesNotExist:
+            # if user didnt select a choice or invalid cho[ice
+            # it will render as didnt select a choice
             return super().get(request, *args, **kwargs)
         else:
             # go to polls detail application

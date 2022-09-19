@@ -1,13 +1,6 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
-from django.views.generic import ListView
-from django.contrib.auth.mixins import LoginRequiredMixin
-
-
-class EyesOnlyView(LoginRequiredMixin, ListView):
-    # this is the default. Same default as in auth_required decorator
-    login_url = '/accounts/login/'
+from django.shortcuts import redirect, render
 
 
 def signup(request):
