@@ -20,7 +20,7 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         """Return the last five published questions."""
         return Question.objects.filter(pub_date__lte=timezone.localtime()
-                                       ).order_by('-pub_date')[:5]
+                                    ).order_by('-pub_date')[:5]
 
 
 def showtime(request) -> HttpResponse:
@@ -72,7 +72,7 @@ class DetailView(generic.DetailView):
 
             return render(request, 'polls/detail.html', {
                 'question': question,
-                'is_voted': user_vote.is_voted(user),
+                'user_vote': user_vote,
             })
 
 

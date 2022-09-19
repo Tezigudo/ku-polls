@@ -10,7 +10,7 @@
     {% csrf_token %}
         <legend><h2>{{ question.question_text }}</h2></legend>
         {% for choice in question.choice_set.all %} 
-        {% if is_votedd %}
+        {% if choice == user_vote%}
         <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" checked>
         {% else %}
         <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
