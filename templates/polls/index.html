@@ -1,13 +1,12 @@
-{% extends 'polls/base.html' %}
+{% extends 'base.html' %}
 
 {%block title%}
 {{ super }}
 Polls list
 {% endblock title%}
 {% block body%}
+<h1>Polls list</h1>
 {{super}}
-  <h1>Polls list</h1>
-  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 {% if latest_question_list %}
   <ul>
     {% for question in latest_question_list %}
@@ -29,4 +28,9 @@ Polls list
 {% else %}
   <p>No polls are available.</p>
 {% endif %}
+
+{% if user.is_authenticated %}&nbsp;&nbsp;&nbsp;<label>{{"login as "}}</label><user>{{user.username}}</user> <a href="{% url 'logout' %}"><button type="button">Log Out</button></a>
+{% else %}<a href="{% url 'login' %}"><button type="button">Log in?</button></a>
+{% endif %}
 {% endblock body%}
+{% block button %}{% endblock button %}

@@ -10,7 +10,10 @@
 <body>
     <div class="polls_list">
     {% block body %}
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+      {% block content %} {% endblock content%}
     {% endblock body %}
+    {% block button %}<a href="{% url 'polls:index' %}"><button type="button">Home</button></a> {% endblock button%}
     </div>
 </body>
 </html>
