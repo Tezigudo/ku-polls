@@ -97,3 +97,7 @@ class QuestionModelTests(TestCase):
         current_question = create_question('', seconds=1)
         current_question.end_date = timezone.localtime()+datetime.timedelta(seconds=1)
         self.assertIs(current_question.can_vote(), True)
+
+
+class VoteModelTests(TestCase):
+    ...

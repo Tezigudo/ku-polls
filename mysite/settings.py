@@ -132,3 +132,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/polls/'    # show list of polls
 LOGOUT_REDIRECT_URL = '/accounts/login/'
+SIGNUP_REDIRECT_URL = '/polls/'
