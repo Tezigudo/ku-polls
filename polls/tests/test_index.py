@@ -1,7 +1,7 @@
-from .base import create_question
-
 from django.test import TestCase
 from django.urls import reverse
+
+from .base import create_question
 
 
 class QuestionIndexViewTests(TestCase):
