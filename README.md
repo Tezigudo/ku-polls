@@ -23,6 +23,25 @@ go to project directory
 cd ku-polls
 ```
 
+create virtual environments name env
+
+```sh
+python3 -m venv env
+```
+
+then activate it
+
+on **macos**
+
+```sh
+source env/bin/activate
+```
+
+on windows
+```sh
+. env/bin/activate
+```
+
 make sure that you install all the requirements by run this command, its can be whether `pip`, `pip3`, or `python -m pip`
 
 ```sh
@@ -33,7 +52,15 @@ next, you have to create file name `.env` to configuration **note that you may g
 
 `.env` file template looks like [sample.env](sample.env) you can modify value and copy it into `.env`
 
+you need to migrate the database then load the data by
+
+```sh
+python manage.py migrate
+python manage.py loaddate data/*.json
+```
+
 now to run server by type this
+
 ```sh
 python manage.py runserver
 ```
