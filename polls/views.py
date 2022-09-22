@@ -41,7 +41,6 @@ class DetailView(generic.DetailView):
         """Excludes any questions that aren't published yet."""
         return Question.objects.filter(pub_date__lte=timezone.localtime())
 
-
     def get(self, request, *args, **kwargs):
         """Override the get method to check if the question can be voted.
 
@@ -112,7 +111,8 @@ def vote(request: HttpRequest, question_id):
                 user_vote.save()
             except Vote.DoesNotExist:
                 Vote.objects.create(
-                    user=user, choice=selected_choice, question=selected_choice.question).save()
+                    user=user, choice=selected_choice,\
+                        question=selected_choice.question).save()
         else:
             # if question is expired it will redirect you to the index page.
             messages.error(request, "You can't vote this question.")

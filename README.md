@@ -9,6 +9,9 @@ App created as part of the [Individual Software Process](
 https://cpske.github.io/ISP) course at Kasetsart University.
 
 ## Install and Run
+
+### How to Install
+
 make sure that you have [python](https://www.python.org/downloads/) in your computer
 
 first clone [**this repository**](https://github.com/Tezigudo/ku-polls) by type this command in your terminal at your choose path
