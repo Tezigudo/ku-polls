@@ -43,4 +43,3 @@ class QuestionDetailViewTests(TestCase):
         self.client.logout()
         res = self.client.get(reverse('polls:index'))
         self.assertEqual(res.status_code, 200)
-

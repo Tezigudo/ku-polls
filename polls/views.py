@@ -2,7 +2,8 @@
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpRequest
+from django.http import Http404, HttpResponse,\
+    HttpResponseRedirect, HttpRequest
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils import timezone
@@ -19,8 +20,8 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.filter(pub_date__lte=timezone.localtime()
-                                    ).order_by('-pub_date')[:5]
+        return Question.objects.filter(pub_date__lte=timezone.localtime(
+        )).order_by('-pub_date')[:5]
 
 
 def showtime(request) -> HttpResponse:
@@ -111,12 +112,13 @@ def vote(request: HttpRequest, question_id):
                 user_vote.save()
             except Vote.DoesNotExist:
                 Vote.objects.create(
-                    user=user, choice=selected_choice,\
-                        question=selected_choice.question).save()
+                    user=user, choice=selected_choice,
+                    question=selected_choice.question).save()
         else:
             # if question is expired it will redirect you to the index page.
             messages.error(request, "You can't vote this question.")
             return HttpResponseRedirect(reverse('polls:index'))
 
         # after voting it will redirct you to result page
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        return HttpResponseRedirect(reverse('polls:results',
+                                    args=(question.id,)))
