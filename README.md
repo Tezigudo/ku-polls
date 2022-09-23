@@ -9,6 +9,9 @@ App created as part of the [Individual Software Process](
 https://cpske.github.io/ISP) course at Kasetsart University.
 
 ## Install and Run
+
+### How to Install
+
 make sure that you have [python](https://www.python.org/downloads/) in your computer
 
 first clone [**this repository**](https://github.com/Tezigudo/ku-polls) by type this command in your terminal at your choose path
@@ -23,6 +26,25 @@ go to project directory
 cd ku-polls
 ```
 
+create virtual environments name env
+
+```sh
+python3 -m venv env
+```
+
+then activate it
+
+on **macos**
+
+```sh
+source env/bin/activate
+```
+
+on windows
+```sh
+. env/bin/activate
+```
+
 make sure that you install all the requirements by run this command, its can be whether `pip`, `pip3`, or `python -m pip`
 
 ```sh
@@ -33,7 +55,15 @@ next, you have to create file name `.env` to configuration **note that you may g
 
 `.env` file template looks like [sample.env](sample.env) you can modify value and copy it into `.env`
 
+you need to migrate the database then load the data by
+
+```sh
+python manage.py migrate
+python manage.py loaddate data/*.json
+```
+
 now to run server by type this
+
 ```sh
 python manage.py runserver
 ```
@@ -68,5 +98,6 @@ lets enjoy the polls by me :)
 * [Iteration 1 plan](https://github.com/Tezigudo/ku-polls/wiki/Iteration-1-Plan)
 * [Iteration 2 plan](https://github.com/Tezigudo/ku-polls/wiki/Iteration-2-Plan)
 * [Iteration 3 plan](https://github.com/Tezigudo/ku-polls/wiki/Iteration-3-Plan)
+* [Iteration 4 plan](https://github.com/Tezigudo/ku-polls/wiki/Iteration-4-Plan)
 
 [django-tutorial]: https://docs.djangoproject.com/en/4.1/intro/tutorial01/sdx

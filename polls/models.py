@@ -25,7 +25,8 @@ class Question(models.Model):
         Returns:
             bool -- True if question was publlish recently, False otherwise
         """
-        return timezone.localtime() >= self.pub_date >= timezone.localtime() - datetime.timedelta(days=1)
+        return timezone.localtime() >= self.pub_date >= \
+            timezone.localtime() - datetime.timedelta(days=1)
 
     def is_published(self) -> bool:
         """Check whether question was published or not by published date and today(time now).
@@ -36,7 +37,8 @@ class Question(models.Model):
         return timezone.localtime() >= self.pub_date
 
     def can_vote(self) -> bool:
-        """Check whether question can be voted or not if now time is more than end dated visitor can not vote anymore.
+        """Check whether question can be voted or not if now time is more\
+        than end dated visitor can not vote anymore.
 
         Returns:
             bool -- True if question are not expired, False otherwise
@@ -63,7 +65,7 @@ class Choice(models.Model):
 
     @property
     def votes(self):
-        """total vote for this choice"""
+        """Total vote for this choice."""
         return Vote.objects.filter(choice=self).count()
 
     def __str__(self) -> str:
@@ -77,9 +79,12 @@ class Choice(models.Model):
 
 class Vote(models.Model):
     """model for vating one user to one question."""
+
     question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
 
     def __repr__(self) -> str:
-        return f'Vote(user={self.user.id}, questionid={self.question.id}, choiceid={self.choice.id})'
+        """Represent vote to easier reed."""
+        return f'Vote(user={self.user.id},\
+            questionid={self.question.id}, choiceid={self.choice.id})'
