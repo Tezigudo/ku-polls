@@ -14,7 +14,7 @@ https://cpske.github.io/ISP) course at Kasetsart University.
 
 make sure that you have [python](https://www.python.org/downloads/) in your computer
 
-first clone [**this repository**](https://github.com/Tezigudo/ku-polls) by type this command in your terminal at your choose path
+first, clone [**this repository**](https://github.com/Tezigudo/ku-polls) by type this command in your terminal at your choosen path
 
 ```sh
 git clone https://github.com/Tezigudo/ku-polls.git ku-polls
@@ -26,41 +26,21 @@ go to project directory
 cd ku-polls
 ```
 
-create virtual environments name env
-
-```sh
-python3 -m venv env
-```
-
-then activate it
-
-on **macos**
-
-```sh
-source env/bin/activate
-```
-
-on windows
-```sh
-. env/bin/activate
-```
-
-make sure that you install all the requirements by run this command, its can be whether `pip`, `pip3`, or `python -m pip`
-
-```sh
-pip install -r requirements.txt
-```
-
 next, you have to create file name `.env` to configuration **note that you may get your secretkeys [here](https://djecrety.ir)**
 
 `.env` file template looks like [sample.env](sample.env) you can modify value and copy it into `.env`
 
-you need to migrate the database then load the data by
+
+by running [`setup.sh`](setup.sh) will set everythings ready for you to running the application by typing this command
+
+you can initialize the polls by
 
 ```sh
-python manage.py migrate
-python manage.py loaddate data/*.json
+bash setup.sh
 ```
+
+
+### How to run
 
 now to run server by type this
 
