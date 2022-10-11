@@ -1,0 +1,8 @@
+install:
+  - pip install codecov
+
+script:
+  - coverage run manage.py test polls
+
+after_success:
+  - codecov
