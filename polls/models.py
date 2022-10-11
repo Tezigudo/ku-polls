@@ -11,13 +11,13 @@ class Question(models.Model):
     """Model for polls question."""
 
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-    end_date = models.DateTimeField('date ended', null=True, blank=True)
+    pub_date = models.DateTimeField("date published")
+    end_date = models.DateTimeField("date ended", null=True, blank=True)
 
     @admin.display(
         boolean=True,
-        ordering=['pub_date', 'end_date'],
-        description='Published recently?',
+        ordering=["pub_date", "end_date"],
+        description="Published recently?",
     )
     def was_published_recently(self) -> bool:
         """Check whether question was publish less than 1 day or not.
@@ -25,8 +25,11 @@ class Question(models.Model):
         Returns:
             bool -- True if question was publlish recently, False otherwise
         """
-        return timezone.localtime() >= self.pub_date >= \
-            timezone.localtime() - datetime.timedelta(days=1)
+        return (
+            timezone.localtime()
+            >= self.pub_date
+            >= timezone.localtime() - datetime.timedelta(days=1)
+        )
 
     def is_published(self) -> bool:
         """Check whether question was published or not by published date and today(time now).
@@ -86,5 +89,5 @@ class Vote(models.Model):
 
     def __repr__(self) -> str:
         """Represent vote to easier reed."""
-        return f'Vote(user={self.user.id},\
-            questionid={self.question.id}, choiceid={self.choice.id})'
+        return f"Vote(user={self.user.id},\
+            questionid={self.question.id}, choiceid={self.choice.id})"

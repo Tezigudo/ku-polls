@@ -13,15 +13,16 @@ class ChoiceInline(admin.StackedInline):
 
 class QuestionAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,               {'fields': ['question_text']}),
-        ('Date information', {'fields': [
-         'pub_date', 'end_date'], 'classes': ['collapse']}),
+        (None, {"fields": ["question_text"]}),
+        (
+            "Date information",
+            {"fields": ["pub_date", "end_date"], "classes": ["collapse"]},
+        ),
     ]
     inlines = [ChoiceInline]
-    list_display = ('question_text', 'pub_date',
-                    'was_published_recently', 'can_vote')
-    list_filter = ['pub_date', 'end_date']
-    search_fields = ['question_text']
+    list_display = ("question_text", "pub_date", "was_published_recently", "can_vote")
+    list_filter = ["pub_date", "end_date"]
+    search_fields = ["question_text"]
 
 
 admin.site.register(Question, QuestionAdmin)
