@@ -6,7 +6,7 @@ omit =
     polls/tests/*.py
     polls/migrations/*.py
     */__init__.py
-    mysite/settings.py
+    mysite/*
     manage.py
 
 # exclude some methods we don't test from the report and stats
