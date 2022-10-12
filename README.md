@@ -1,4 +1,7 @@
 # ku-polls
+
+![unittest](https://github.com/tezigudo/ku-polls/actions/workflows/django.yml/badge.svg)
+[![codecov](https://codecov.io/gh/Tezigudo/ku-polls/branch/main/graph/badge.svg?token=V8ZTBB1DY4)](https://codecov.io/gh/Tezigudo/ku-polls)
 ## Online Polls And Surveys
 
 An application for conducting online polls and surveys based
